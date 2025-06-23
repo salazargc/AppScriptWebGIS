@@ -64,13 +64,7 @@ function zoomToLayer(layer) {
       let bufferLayer = L.geoJSON(buffer).addTo(mymap);
       mymap.fitBounds(bufferLayer.getBounds());
     },
-
-    
   });
-
-
-
-  
 }
 
 // Fecthing Data
