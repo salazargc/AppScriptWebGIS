@@ -18,7 +18,7 @@ let myIcon = L.icon({
 });
 
 let clusterLayer = L.markerClusterGroup();
-let data = null;
+
 function dataToMap(geojson) {
   data = L.geoJSON(geojson, {
     pointToLayer: (feature, latlng) => {
