@@ -1,6 +1,6 @@
 const mymap = L.map("mapid", {
-  center: [9.29481, -68.98914],
-  zoom: 12,
+  center: [9.25481, -68.98914],
+  zoom: 11,
 });
 
 const stadiaMaps = L.tileLayer(
@@ -52,18 +52,25 @@ function zoomToLayer(layer) {
   layer.on({
     click: (e) => {
       clickedLayer = e.target;
-      mymap.setView(clickedLayer.getLatLng(), 15);
+      mymap.setView(clickedLayer.getLatLng(), 18);
       latlng = layer.getLatLng();
       turfPoint = turf.point([latlng.lng, latlng.lat]);
 
-      buffer = turf.buffer(turfPoint, 0.2, { units: "kilometers" });
+      buffer = turf.buffer(turfPoint, 0.1, { units: "kilometers" });
 
       //bbox= turf.bbox(buffer);
       //polygon = turf.bboxPolygon(bbox)
 
-      let bufferLayer = L.geoJSON(buffer).addTo(mymap);
+      let bufferLayer = L.geoJSON(buffer, {
+        style: {
+          color: "#f7cf00",
+          fillOpacity: 0,
+        },
+      }).addTo(mymap);
       mymap.fitBounds(bufferLayer.getBounds());
     },
+
+   
   });
 }
 
